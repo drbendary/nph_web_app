@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NPH Diagnosis Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+    <h1>🧠 NPH Diagnostic Scoring Tool</h1>
+    <form method="POST">
+        <label>Does the patient have gait disturbance?</label>
+        <select name="gait">
+            <option value="yes">Yes</option>
+            <option value="maybe">Maybe</option>
+            <option value="no">No</option>
+        </select>
+
+        <label>Does the patient have urinary incontinence?</label>
+        <select name="urine">
+            <option value="yes">Yes</option>
+            <option value="maybe">Maybe</option>
+            <option value="no">No</option>
+        </select>
+
+        <label>Is there cognitive decline?</label>
+        <select name="cognition">
+            <option value="yes">Yes</option>
+            <option value="maybe">Maybe</option>
+            <option value="no">No</option>
+        </select>
+
+        <label>Evans Index (e.g. 0.32)</label>
+        <input type="text" name="evans" required>
+
+        <label>Is DESH sign present on MRI?</label>
+        <select name="desh">
+            <option value="yes">Yes</option>
+            <option value="maybe">Maybe</option>
+            <option value="no">No</option>
+        </select>
+
+        <button type="submit">Calculate Score</button>
+    </form>
+
+    {% if score is not none %}
+    <div class="result">
+        <p><strong>Total Score:</strong> {{ score }}/8</p>
+        <p><strong>Interpretation:</strong> {{ interpretation }}</p>
+    </div>
+    {% endif %}
+</body>
+
+</html>
